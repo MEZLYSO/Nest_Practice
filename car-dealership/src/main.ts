@@ -14,7 +14,7 @@ async function main() {
       //Filtra la data solo obtiene los que requiere
       whitelist: true,
       // Lanza un error si hay propiedades que no existen
-      forbidNonWhitelisted: true,
+      forbidNonWhitelisted: true
     })
   )
 
