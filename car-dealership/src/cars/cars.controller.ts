@@ -1,7 +1,12 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
+import { CreateCarDto } from './dto/create-car.dto';
 
 @Controller('cars')
+
+//Validacion a nivel de controlador usando ValidationPipe
+//@UsePipes(ValidationPipe)
+
 export class CarsController {
   constructor(private readonly carsService: CarsService) { }
 
@@ -12,16 +17,18 @@ export class CarsController {
   }
 
   @Get(':id')
-  getCarById(@Param('id', ParseIntPipe) id: number) {
+  // Definicion de la version de uuid ---------------------v
+  getCarById(@Param('id', new ParseUUIDPipe({ version: '7' })) id: string) {
     return this.carsService.findOneById(id)
   }
 
   // Create 
+  //
+  // Uso de DTO (Data Transfer Object)
+  //
   @Post()
-  createCar(@Body() body: any) {
-    return {
-      body
-    }
+  createCar(@Body() createCarDto: CreateCarDto) {
+    return createCarDto
   }
 
   //Update
