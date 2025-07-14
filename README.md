@@ -12,3 +12,10 @@
 
 ## Description
 Prueba de proyecto utilizando NestJs
+
+## Stuff
+Populate of Data
+````
+```
+http://localhost:3000/seed
+```
